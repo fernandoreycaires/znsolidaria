@@ -41,6 +41,8 @@ Route::get('/acoes/arrecadacao', [ArrecadacaoController::class, 'arrecadacao' ])
 
 /*ROTAS DOS MENUS DAS COMUNIDADESS*/
 Route::get('/acoes/comunidade', [ComunidadeController::class, 'comunidade' ])->name('acoes.comunidade.index');
+Route::get('/acoes/comunidade/add', [ComunidadeController::class, 'addView' ])->name('acoes.comunidade.addView');
+Route::post('/acoes/comunidade/inserir', [ComunidadeController::class, 'add' ])->name('acoes.comunidade.add');
 
 /*ROTAS DOS MENUS DAS FAMILIAS*/
 Route::get('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoes.familia.index');

@@ -5,63 +5,50 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Comunidade</h3>
+          <h3>Comunidades</h3>
         </div>
       </div>
 
       <div class="clearfix"></div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="">
-            <div class="x_content">
-              <div class="row">
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
-                  <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-caret-square-o-right"></i>
-                    </div>
-                    <div class="count">179</div>
+      <div class="col-md-6 col-sm-6  ">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2><small>Comunidades cadastradas </small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a href="<?php echo e(route('acoes.comunidade.addView')); ?>" ><i class="fa fa-plus text-success"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
 
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                  </div>
-                </div>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
-                  <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-comments-o"></i>
-                    </div>
-                    <div class="count">179</div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Comunidade</th>
+                  <th>Familias</th>
+                  <th>Visualizar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $__currentLoopData = $comunidades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comunidade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <tr>
+                  <th scope="row"><?php echo e($comunidade->id); ?></th>
+                  <td><?php echo e($comunidade->comunidade); ?> </td>
+                  <td>325</td>
+                  <td><i class="fa fa-eye text-success"></i></td>
+                </tr>    
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </tbody>
+            </table>
 
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                  </div>
-                </div>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
-                  <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-sort-amount-desc"></i>
-                    </div>
-                    <div class="count">179</div>
-
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                  </div>
-                </div>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
-                  <div class="tile-stats">
-                    <div class="icon"><i class="fa fa-check-square-o"></i>
-                    </div>
-                    <div class="count">179</div>
-
-                    <h3>New Sign ups</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
           </div>
         </div>
       </div>
+
+      <div class="clearfix"></div>
 
       <div class="row">
         <div class="col-md-12">
