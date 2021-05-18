@@ -47,4 +47,13 @@ class ComunidadeController extends Controller
 
         return redirect()->route('acoes.comunidade.index');
     }
+
+    public function dados(Comunidade $comunidadeID)
+    {
+        $user = Auth()->user() ; //Pega os dados do Usuario logado
+
+        $endereco = $comunidadeID->comunidade_endereco()->get();
+
+        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco'));
+    }
 }

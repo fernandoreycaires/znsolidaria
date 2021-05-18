@@ -40,7 +40,7 @@
                   <th scope="row">{{$comunidade->id}}</th>
                   <td>{{$comunidade->comunidade}} </td>
                   <td>325</td>
-                  <td><a href="#"><i class="fa fa-eye text-success"></i></a></td>
+                  <td><a href="{{route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])}}"><i class="fa fa-eye text-success"></i></a></td>
                 </tr>    
                 @endforeach
               </tbody>

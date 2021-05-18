@@ -38,7 +38,7 @@
                   <th scope="row"><?php echo e($comunidade->id); ?></th>
                   <td><?php echo e($comunidade->comunidade); ?> </td>
                   <td>325</td>
-                  <td><a href="#"><i class="fa fa-eye text-success"></i></a></td>
+                  <td><a href="<?php echo e(route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])); ?>"><i class="fa fa-eye text-success"></i></a></td>
                 </tr>    
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
