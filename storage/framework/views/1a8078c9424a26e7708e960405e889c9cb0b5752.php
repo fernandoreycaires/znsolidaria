@@ -31,7 +31,7 @@
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-users"></i>
                     </div>
-                    <div class="count">45</div>
+                    <div class="count"><?php echo e($comunidades); ?> </div>
 
                     <h3>Comunidades</h3>
                     <p>Comunidades em assistencia.</p>

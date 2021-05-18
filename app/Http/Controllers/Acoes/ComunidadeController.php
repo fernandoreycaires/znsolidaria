@@ -14,8 +14,9 @@ class ComunidadeController extends Controller
         $user = Auth()->user() ; //Pega os dados do Usuario logado
 
         $comunidades = Comunidade::all()->sortByDesc('id');
-
-        return view('sistema.acoes.comunidade.index', compact('user', 'comunidades'));
+        $qtdcomunidades = Comunidade::all()->count();
+        
+        return view('sistema.acoes.comunidade.index', compact('user', 'qtdcomunidades' ,'comunidades'));
     }
 
     public function addView()

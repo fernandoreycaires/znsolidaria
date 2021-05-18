@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidade;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,6 +19,8 @@ class HomeController extends Controller
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
 
-        return view('sistema.index', compact('user') );
+        $comunidades = Comunidade::all()->count();
+        
+        return view('sistema.index', compact('user', 'comunidades'));
     }
 }

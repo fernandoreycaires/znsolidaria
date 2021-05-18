@@ -11,7 +11,7 @@
 
       <div class="clearfix"></div>
 
-      <div class="col-md-6 col-sm-6  ">
+      <div class="col-md-6 col-sm-6">
         <div class="x_panel">
           <div class="x_title">
             <h2><small>Comunidades cadastradas </small></h2>
@@ -38,7 +38,7 @@
                   <th scope="row"><?php echo e($comunidade->id); ?></th>
                   <td><?php echo e($comunidade->comunidade); ?> </td>
                   <td>325</td>
-                  <td><i class="fa fa-eye text-success"></i></td>
+                  <td><a href="#"><i class="fa fa-eye text-success"></i></a></td>
                 </tr>    
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
@@ -46,6 +46,23 @@
 
           </div>
         </div>
+      </div>
+      
+      <div class="col-md-6 col-sm-6">
+        
+          <div class="x_content">
+            <div class="animated flipInY">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-users"></i>
+                </div>
+                <div class="count"><?php echo e($qtdcomunidades); ?> </div>
+
+                <h3>Comunidades</h3>
+                <p>Comunidades em assistencia.</p>
+              </div>
+            </div>
+          </div>
+        
       </div>
 
       <div class="clearfix"></div>
