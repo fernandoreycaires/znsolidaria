@@ -534,6 +534,7 @@ class ComposerStaticInitb1336f8e945b284e06b6d42baae44097
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\Auth\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/Auth/LoginRequest.php',
         'App\\Models\\Comunidade' => __DIR__ . '/../..' . '/app/Models/Comunidade.php',
+        'App\\Models\\ComunidadeEndereco' => __DIR__ . '/../..' . '/app/Models/ComunidadeEndereco.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

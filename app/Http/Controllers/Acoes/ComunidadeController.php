@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Acoes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comunidade;
+use App\Models\ComunidadeEmailResponsavel;
 use App\Models\ComunidadeEndereco;
+use App\Models\ComunidadeResponsavel;
+use App\Models\ComunidadeTelResponsavel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ComunidadeController extends Controller
 {
@@ -47,13 +51,64 @@ class ComunidadeController extends Controller
 
         return redirect()->route('acoes.comunidade.index');
     }
+    
+    public function editEndereco(ComunidadeEndereco $endComunidadeID,  Request $request)
+    {
+        $endComunidadeID->mapa = $request->linkGoogle;
+        $endComunidadeID->endereco = $request->enderecoComunidade;
+        $endComunidadeID->bairro = $request->bairroComunidade;
+        $endComunidadeID->cidade = $request->cidadeComunidade;
+        $endComunidadeID->estado = $request->estadoComunidade;
+        $endComunidadeID->save();
+
+        return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $endComunidadeID->comunidade ]);
+    }
+
+    public function addResponsavel(Request $request)
+    {
+        //INSERE VALOR NA TABELA COMUNIDADES_RESPONSAVEL
+        $responsavel = new ComunidadeResponsavel();
+        $responsavel->comunidade = $request->comunidade;
+        $responsavel->nome = $request->nomeContato;
+        $responsavel->save();
+
+        //BUSCA ULTIMO VALOR INSERIDO NA TABELA COMUNIDADES_RESPONSAVEL
+        $buscaResponsavel = ComunidadeResponsavel::all()->last();
+
+        //INSERE TELEFONE NA TABELA COMUNIDADES_TELRESPONSAVEL
+        $telResp = new ComunidadeTelResponsavel();
+        $telResp->resp_comunidade = $buscaResponsavel->id; //Aqui insere ID buscado no comando acima
+        $telResp->comunidade = $request->comunidade;
+        $telResp->telefone = $request->telefoneContato;
+        $telResp->save();
+
+        //INSERE TELEFONE NA TABELA COMUNIDADES_TELRESPONSAVEL
+        $emailResp = new ComunidadeEmailResponsavel();
+        $emailResp->resp_comunidade = $buscaResponsavel->id; //Aqui insere ID buscado no comando acima
+        $emailResp->comunidade = $request->comunidade;
+        $emailResp->email = $request->emailContato;
+        $emailResp->save();
+
+        return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $request->comunidade]);
+    }
+
+    public function apagarResponsavel(ComunidadeResponsavel $respComunidadeID)
+    {
+        $idComunidade = $respComunidadeID->comunidade;
+        $respComunidadeID->delete();
+
+        return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $idComunidade]);
+    }
 
     public function dados(Comunidade $comunidadeID)
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
 
         $endereco = $comunidadeID->comunidade_endereco()->get();
-
-        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco'));
+        $responsaveis = $comunidadeID->comunidade_responsavel()->get();
+        $telresponsaveis = $comunidadeID->comunidade_telresponsavel()->get();
+        $emailresponsaveis = $comunidadeID->comunidade_emailresponsavel()->get();
+        
+        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco', 'responsaveis', 'telresponsaveis', 'emailresponsaveis'));
     }
 }

@@ -44,6 +44,9 @@ Route::get('/acoes/comunidade', [ComunidadeController::class, 'comunidade' ])->n
 Route::get('/acoes/comunidade/add', [ComunidadeController::class, 'addView' ])->name('acoes.comunidade.addView');
 Route::post('/acoes/comunidade/inserir', [ComunidadeController::class, 'add' ])->name('acoes.comunidade.add');
 Route::get('/acoes/comunidade/{comunidadeID}', [ComunidadeController::class, 'dados' ])->name('acoes.comunidade.dados');
+Route::put('/acoes/comunidade/editEndereco/{endComunidadeID}', [ComunidadeController::class, 'editEndereco' ])->name('acoes.comunidade.editEndereco');
+Route::post('/acoes/comunidade/inserirResponsavel', [ComunidadeController::class, 'addResponsavel'])->name('acoes.comunidade.addResponsavel');
+Route::delete('/acoes/comunidade/apagarResponsavel/{respComunidadeID}', [ComunidadeController::class, 'apagarResponsavel'])->name('acoes.comunidade.apagarResponsavel');
 
 /*ROTAS DOS MENUS DAS FAMILIAS*/
 Route::get('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoes.familia.index');

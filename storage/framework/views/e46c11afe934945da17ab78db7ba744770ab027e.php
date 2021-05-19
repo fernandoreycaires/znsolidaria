@@ -2,6 +2,7 @@
 <script src="<?php echo e(asset('theme_lib/vendors/jquery/dist/jquery.min.js')); ?>"></script>
 <!-- Bootstrap -->
 <script src="<?php echo e(asset('theme_lib/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')); ?>"></script>
+<script src="<?php echo e(asset('site/bootstrap.js')); ?>"></script>
 <!-- FastClick -->
 <script src="<?php echo e(asset('theme_lib/vendors/fastclick/lib/fastclick.js')); ?>"></script>
 <!-- NProgress -->

@@ -15,4 +15,19 @@ class Comunidade extends Model
     {
         return $this->hasOne(ComunidadeEndereco::class, 'comunidade', 'id');
     }
+
+    public function comunidade_responsavel()
+    {
+        return $this->hasMany(ComunidadeResponsavel::class, 'comunidade', 'id');
+    }
+
+    public function comunidade_telresponsavel()
+    {
+        return $this->hasMany(ComunidadeTelResponsavel::class, 'comunidade', 'id');
+    }
+
+    public function comunidade_emailresponsavel()
+    {
+        return $this->hasMany(ComunidadeEmailResponsavel::class, 'comunidade', 'id');
+    }
 }

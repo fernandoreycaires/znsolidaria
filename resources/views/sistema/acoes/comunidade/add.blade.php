@@ -33,28 +33,28 @@
                 </div>
               </div>
               <div class="item form-group">
-                <label class="col-form-label col-md-3 col-sm-3 label-align" for="endereco">Endereço Referencia </span>
+                <label class="col-form-label col-md-3 col-sm-3 label-align" for="endereco">Endereço Referencia <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input type="text" id="endereco" name="endereco" class="form-control">
+                  <input type="text" id="endereco" name="endereco" required="required" class="form-control">
                 </div>
               </div>
               <div class="item form-group">
                 <label for="bairro" class="col-form-label col-md-3 col-sm-3 label-align">Bairro</label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input id="bairro" class="form-control" type="text" name="bairro">
+                  <input id="bairro" class="form-control" type="text" name="bairro" required="required">
                 </div>
               </div>
               <div class="item form-group">
                 <label for="cidade" class="col-form-label col-md-3 col-sm-3 label-align">Cidade</label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input id="cidade" class="form-control" type="text" name="cidade">
+                  <input id="cidade" class="form-control" type="text" name="cidade" required="required">
                 </div>
               </div>
               <div class="item form-group">
                 <label for="estado" class="col-form-label col-md-3 col-sm-3 label-align">Estado</label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input id="estado" class="form-control" type="text" name="estado">
+                  <input id="estado" class="form-control" type="text" name="estado" required="required">
                 </div>
               </div>
 

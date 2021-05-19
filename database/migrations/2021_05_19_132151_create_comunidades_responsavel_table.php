@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComunidadesEnderecoTable extends Migration
+class CreateComunidadesResponsavelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateComunidadesEnderecoTable extends Migration
      */
     public function up()
     {
-        Schema::create('comunidades_endereco', function (Blueprint $table) {
+        Schema::create('comunidades_responsavel', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('comunidade');
-            $table->text('mapa')->nullable();
-            $table->string('endereco');
-            $table->string('bairro');
-            $table->string('cidade');
-            $table->string('estado');
+            $table->string('nome');
+            $table->string('foto')->nullable();
             $table->timestamps();
 
             $table->foreign('comunidade')->references('id')->on('comunidades')->onDelete('CASCADE');
+
         });
     }
 
@@ -34,6 +32,6 @@ class CreateComunidadesEnderecoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comunidades_endereco');
+        Schema::dropIfExists('comunidades_responsavel');
     }
 }
