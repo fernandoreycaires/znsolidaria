@@ -22,7 +22,7 @@
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-user"></i>
                     </div>
-                    <div class="count">2453</div>
+                    <div class="count">{{$familias}}</div>
 
                     <h3>Familias</h3>
                     <p>Pessoas sendo assistidas.</p>
@@ -33,7 +33,7 @@
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-users"></i>
                     </div>
-                    <div class="count">{{$comunidades}} </div>
+                    <div class="count">{{$comunidades}}</div>
 
                     <h3>Comunidades</h3>
                     <p>Comunidades em assistencia.</p>
@@ -44,7 +44,7 @@
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-book"></i>
                     </div>
-                    <div class="count">179</div>
+                    <div class="count">0</div>
 
                     <h3>Ações</h3>
                     <p>Ações programadas este ano.</p>
@@ -55,7 +55,7 @@
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o"></i>
                     </div>
-                    <div class="count">179</div>
+                    <div class="count">0</div>
 
                     <h3>Realizadas</h3>
                     <p>Açoes realizadas este ano.</p>

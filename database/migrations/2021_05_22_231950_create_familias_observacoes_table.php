@@ -16,7 +16,7 @@ class CreateFamiliasObservacoesTable extends Migration
         Schema::create('familias_observacoes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('familia');
-            $table->string('observacao');
+            $table->string('observacao')->nullable();
             $table->timestamps();
 
             $table->foreign('familia')->references('id')->on('familias')->onDelete('CASCADE');

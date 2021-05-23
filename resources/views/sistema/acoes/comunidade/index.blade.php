@@ -9,6 +9,13 @@
         <div class="title_left">
           <h3>Comunidades</h3>
         </div>
+        <div class="title_right">
+          <div class="col-md-2 col-sm-2  form-group pull-right top_search">
+            <div class="input-group">
+              <a href="{{route('acoes.comunidade.addView')}}" class="btn btn-default btn-success" >Novo <i class="fa fa-plus"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="clearfix"></div>

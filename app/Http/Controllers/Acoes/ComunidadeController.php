@@ -8,6 +8,11 @@ use App\Models\ComunidadeEmailResponsavel;
 use App\Models\ComunidadeEndereco;
 use App\Models\ComunidadeResponsavel;
 use App\Models\ComunidadeTelResponsavel;
+use App\Models\Familia;
+use App\Models\FamiliaEmail;
+use App\Models\FamiliaEndereco;
+use App\Models\FamiliaObservacao;
+use App\Models\FamiliaTelefone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -100,6 +105,14 @@ class ComunidadeController extends Controller
         return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $idComunidade]);
     }
 
+    public function editObs(Comunidade $ComunidadeID, Request $request)
+    {
+        $ComunidadeID->observacao = $request->observacao;
+        $ComunidadeID->save();
+
+        return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $ComunidadeID->id]);
+    }
+
     public function dados(Comunidade $comunidadeID)
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
@@ -108,7 +121,9 @@ class ComunidadeController extends Controller
         $responsaveis = $comunidadeID->comunidade_responsavel()->get();
         $telresponsaveis = $comunidadeID->comunidade_telresponsavel()->get();
         $emailresponsaveis = $comunidadeID->comunidade_emailresponsavel()->get();
-        
-        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco', 'responsaveis', 'telresponsaveis', 'emailresponsaveis'));
+
+        $familias = Familia::where('comunidade', $comunidadeID->id)->get();
+
+        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco', 'responsaveis', 'telresponsaveis', 'emailresponsaveis', 'familias'));
     }
 }

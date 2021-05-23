@@ -47,9 +47,13 @@ Route::get('/acoes/comunidade/{comunidadeID}', [ComunidadeController::class, 'da
 Route::put('/acoes/comunidade/editEndereco/{endComunidadeID}', [ComunidadeController::class, 'editEndereco' ])->name('acoes.comunidade.editEndereco');
 Route::post('/acoes/comunidade/inserirResponsavel', [ComunidadeController::class, 'addResponsavel'])->name('acoes.comunidade.addResponsavel');
 Route::delete('/acoes/comunidade/apagarResponsavel/{respComunidadeID}', [ComunidadeController::class, 'apagarResponsavel'])->name('acoes.comunidade.apagarResponsavel');
+Route::put('/acoes/comunidade/editObs/{ComunidadeID}', [ComunidadeController::class, 'editObs' ])->name('acoes.comunidade.editObs');
 
 /*ROTAS DOS MENUS DAS FAMILIAS*/
 Route::get('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoes.familia.index');
+Route::get('/acoes/familiaAddView', [FamiliaController::class, 'familiaAddView' ])->name('acoes.familia.addView');
+Route::post('/acoes/familiaAdd', [FamiliaController::class, 'familiaAdd' ])->name('acoes.familia.add');
+Route::get('/acoes/familiaPerfilView/{perfil}', [FamiliaController::class, 'familiaPerfilView' ])->name('acoes.familia.PerfilView');
 
 
 /*ROTAS DO MENUS DO FINANCEIRO*/

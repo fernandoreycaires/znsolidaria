@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Acoes;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comunidade;
+use App\Models\Familia;
+use App\Models\FamiliaEmail;
+use App\Models\FamiliaEndereco;
+use App\Models\FamiliaObservacao;
+use App\Models\FamiliaTelefone;
 use Illuminate\Http\Request;
 
 class FamiliaController extends Controller
@@ -11,6 +17,74 @@ class FamiliaController extends Controller
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
 
-        return view('sistema.acoes.familia.index', compact('user'));
+        $familias = Familia::all();
+        $comunidades = Comunidade::all();
+        $emails = FamiliaEmail::all();
+        $enderecos = FamiliaEndereco::all();
+        $telefones = FamiliaTelefone::all();
+        $observacoes = FamiliaObservacao::all();
+
+        return view('sistema.acoes.familia.index', compact('user', 'familias', 'comunidades', 'emails', 'enderecos', 'telefones', 'observacoes'));
+    }
+
+    public function familiaAddView()
+    {
+        $user = Auth()->user() ; //Pega os dados do Usuario logado
+
+        $comunidades = Comunidade::all();
+
+        return view('sistema.acoes.familia.add', compact('user', 'comunidades'));
+    }
+
+    public function familiaAdd(Request $request)
+    {
+        $familiaAdd = new Familia();
+        $familiaAdd->comunidade = $request->comunidade;
+        $familiaAdd->nome = $request->nome;
+        $familiaAdd->nascimento = $request->nascimento;
+        $familiaAdd->cpf = $request->cpf;
+        $familiaAdd->rg = $request->rg;
+        $familiaAdd->estado_civil = $request->estado_civil;
+        $familiaAdd->save();
+
+        $familia = Familia::all()->last(); //BUSCA O ULTIMO REGISTRO NA TABELAFAMILIA
+
+        $telefone = new FamiliaTelefone();
+        $telefone->familia = $familia->id;
+        $telefone->telefone = $request->telefone;
+        $telefone->save();
+
+        $email = new FamiliaEmail();
+        $email->familia = $familia->id;
+        $email->email = $request->email;
+        $email->save();
+
+        $endereco = new FamiliaEndereco();
+        $endereco->familia = $familia->id;
+        $endereco->logradouro = $request->endereco;
+        $endereco->numero = $request->numero;
+        $endereco->bairro = $request->bairro;
+        $endereco->cidade = $request->cidade;
+        $endereco->estado = $request->estado;
+        $endereco->save();
+
+        $observacao = new FamiliaObservacao();
+        $observacao->familia = $familia->id;
+        $observacao->observacao = $request->observacao;
+        $observacao->save();
+        
+
+        return redirect()->route('acoes.familia.index');
+    }
+
+    public function familiaPerfilView(Familia $perfil)
+    {
+        $user = Auth()->user() ; //Pega os dados do Usuario logado
+
+        $endereco = $perfil->familia_endereco()->first();
+        $telefone = $perfil->familia_telefone()->first();
+        $email = $perfil->familia_email()->first();
+
+        return view('sistema.acoes.familia.perfil', compact('user', 'perfil', 'endereco', 'telefone', 'email'));
     }
 }

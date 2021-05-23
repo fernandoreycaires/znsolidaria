@@ -16,7 +16,7 @@ class CreateFamiliasEmailsTable extends Migration
         Schema::create('familias_emails', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('familia');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->timestamps();
 
             $table->foreign('familia')->references('id')->on('familias')->onDelete('CASCADE');

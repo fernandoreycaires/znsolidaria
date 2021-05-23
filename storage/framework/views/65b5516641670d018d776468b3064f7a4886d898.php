@@ -11,6 +11,7 @@
       <div class="title_right">
         <div class="col-md-5 col-sm-5  form-group pull-right top_search">
           <div class="input-group">
+            <a href="<?php echo e(route('acoes.familia.addView')); ?>" class="btn btn-default btn-success" >Novo <i class="fa fa-plus"></i></a>
             <input type="text" class="form-control" placeholder="Procurar por CPF ">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button">Go!</button>
@@ -32,17 +33,34 @@
               <div class="clearfix"></div>
               
               <!-- CARTÕES -->
-
+              <?php $__currentLoopData = $familias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $familia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <div class="col-md-4 col-sm-4  profile_details">
                 <div class="well profile_view">
                   <div class="col-sm-12">
-                    <h4 class="brief"><i>Comunidade</i></h4>
+                    <?php $__currentLoopData = $comunidades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comunidade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <?php if($familia->comunidade == $comunidade->id): ?>
+                        <h4 class="brief"><i>Comunidade: <?php echo e($comunidade->comunidade); ?> </i></h4>
+                      <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <div class="left col-md-7 col-sm-7">
-                      <h2>Nome da Pessoa</h2>
-                      <p><strong>Observação: </strong> Sei lá, alguma coisa relevante ou nada a declarar </p>
+                      <h2><?php echo e($familia->nome); ?> </h2>
+                      <?php $__currentLoopData = $observacoes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $observacao): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($observacao->familia == $familia->id): ?>
+                          <p><strong>Observação: </strong> <?php echo e($observacao->observacao); ?> </p>
+                        <?php endif; ?>
+                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       <ul class="list-unstyled">
-                        <li><i class="fa fa-building"></i><strong> Endereço:</strong></li> Rua Testando Passiencia Junior, 35
-                        <li><i class="fa fa-phone"></i><strong> Telefone:</strong></li> +55 (11) 9 9999-9999
+                        <?php $__currentLoopData = $enderecos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $endereco): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                          <?php if($endereco->familia == $familia->id): ?>
+                            <li><i class="fa fa-building"></i><strong> Endereço:</strong></li> <?php echo e($endereco->logradouro); ?>, <?php echo e($endereco->numero); ?> 
+                          <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $telefones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $telefone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($telefone->familia == $familia->id): ?>
+                              <li><i class="fa fa-phone"></i><strong> Telefone:</strong></li> +55 <?php echo e($telefone->telefone); ?>
+
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </ul>
                     </div>
                     <div class="right col-md-5 col-sm-5 text-center">
@@ -52,14 +70,14 @@
                   <div class=" profile-bottom text-center">
                     
                     <div class=" col-sm-12 emphasis">
-                      <button type="button" class="btn btn-primary btn-sm">
+                      <a href="<?php echo e(route('acoes.familia.PerfilView',['perfil' => $familia->id])); ?>" class="btn btn-primary btn-sm">
                         <i class="fa fa-user"> </i> Ver Perfil
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
-              </div>
-
+              </div>    
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               <!-- ./ CARTÕES -->
               
           </div>

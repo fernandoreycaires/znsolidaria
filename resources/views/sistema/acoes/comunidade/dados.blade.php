@@ -29,8 +29,6 @@
                     </ul>
                   </div>
                   <div id="crop-avatar">
-                    <!-- Current avatar -->
-                    <!-- <img class="img-responsive avatar-view" src="{{asset('theme_lib/production/images/picture.jpg') }}" alt="Avatar" title="Change the avatar"> -->
                     <!-- Mapa -->
                     <iframe src="{{$end->mapa}}" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                   </div>
@@ -319,62 +317,59 @@
                             <th>#</th>
                             <th>Nome</th>
                             <th>CPF</th>
-                            <th class="hidden-phone">Celular</th>
+                            <th>RG</th>
                             <th>Visualizar</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @foreach ($familias as $familia)
                           <tr>
-                            <td>1</td>
-                            <td>New Company Takeover Review</td>
-                            <td>Deveint Inc</td>
-                            <td class="hidden-phone">18</td>
+                            <td>{{$familia->id}} </td>
+                            <td>{{$familia->nome}} </td>
+                            <td>{{$familia->cpf}} </td>
+                            <td>{{$familia->rg}} </td>
                             <td class="vertical-align-mid">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                              </div>
+                                <a href="{{route('acoes.familia.PerfilView',['perfil' => $familia->id])}}" ><i class="fa fa-eye text-success"></i></a>
                             </td>
                           </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>New Partner Contracts Consultanci</td>
-                            <td>Deveint Inc</td>
-                            <td class="hidden-phone">13</td>
-                            <td class="vertical-align-mid">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Partners and Inverstors report</td>
-                            <td>Deveint Inc</td>
-                            <td class="hidden-phone">30</td>
-                            <td class="vertical-align-mid">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>New Company Takeover Review</td>
-                            <td>Deveint Inc</td>
-                            <td class="hidden-phone">28</td>
-                            <td class="vertical-align-mid">
-                              <div class="progress">
-                                <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                              </div>
-                            </td>
-                          </tr>
+                          @endforeach
                         </tbody>
                       </table>
                       <!-- end user projects -->
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                      <p> Aqui uma breve observação sobre a comunidade, e observação também ! </p>
+                      <p><button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#observacaoEdit"><i class="fa fa-eye text-success"></i></button></p>
+                      <p>{{$comunidadeID->observacao}}</p>
+
+                      <!--Janela Modal referente Observações-->
+                      <!-- Modal -->
+                      <div class="modal fade" id="observacaoEdit" tabindex="-1" aria-labelledby="addContatoLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <form action="{{route('acoes.comunidade.editObs', ['ComunidadeID' => $comunidadeID->id])}} " method="post">
+                              @csrf
+                              @method('PUT')
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="addContatoLabel">Observação</h5>
+                              </div>
+                              <div class="modal-body">
+                                <div class="mb-3 row">
+                                  <div class="col-sm-10">
+                                    <textarea class="form-control" id="observacao" name="observacao" placeholder="Descreva um breve observação sobre esta comunidade" >{{$comunidadeID->observacao}}</textarea>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- ./ Janela Modal-->
                     </div>
                   </div>
                 </div>

@@ -20,6 +20,7 @@ class CreateFamiliasTable extends Migration
             $table->string('cpf');
             $table->string('rg')->nullable();
             $table->string('estado_civil');
+            $table->date('nascimento');
             $table->string('foto')->nullable();
             $table->timestamps();
 
