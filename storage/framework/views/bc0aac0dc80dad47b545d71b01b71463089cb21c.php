@@ -16,7 +16,7 @@
           <!--  <li><a href="<?php echo e(route('acoes.acoes')); ?>">Ações</a></li>  -->
           <!--  <li><a href="<?php echo e(route('acoes.arrecadacao.index')); ?>">Arrecadações</a></li> -->
             <li><a href="<?php echo e(route('acoes.comunidade.index')); ?> ">Comunidades</a></li>
-          <!--  <li><a href="<?php echo e(route('acoes.familia.index')); ?> ">Familias</a></li> -->
+            <li><a href="<?php echo e(route('acoes.familia.index')); ?> ">Familias</a></li> 
           </ul>
         </li>
       </ul>

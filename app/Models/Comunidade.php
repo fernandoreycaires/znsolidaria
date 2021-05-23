@@ -30,4 +30,9 @@ class Comunidade extends Model
     {
         return $this->hasMany(ComunidadeEmailResponsavel::class, 'comunidade', 'id');
     }
+
+    public function familia()
+    {
+        return $this->hasMany(Familia::class, 'comunidade', 'id');
+    }
 }

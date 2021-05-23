@@ -16,7 +16,7 @@
           <!--  <li><a href="{{route('acoes.acoes')}}">Ações</a></li>  -->
           <!--  <li><a href="{{route('acoes.arrecadacao.index')}}">Arrecadações</a></li> -->
             <li><a href="{{route('acoes.comunidade.index')}} ">Comunidades</a></li>
-          <!--  <li><a href="{{route('acoes.familia.index')}} ">Familias</a></li> -->
+            <li><a href="{{route('acoes.familia.index')}} ">Familias</a></li> 
           </ul>
         </li>
       </ul>

@@ -3638,3 +3638,32 @@
 #70 /var/www/html/znsolidaria/public/index.php(52): Illuminate\\Foundation\\Http\\Kernel->handle()
 #71 {main}
 "} 
+[2021-05-22 23:35:39] local.ERROR: Command "migration" is not defined.
+
+Did you mean one of these?
+    make:migration
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migration\" is not defined.
+
+Did you mean one of these?
+    make:migration
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status at /mnt/srv/znsolidaria/vendor/symfony/console/Application.php:675)
+[stacktrace]
+#0 /mnt/srv/znsolidaria/vendor/symfony/console/Application.php(254): Symfony\\Component\\Console\\Application->find()
+#1 /mnt/srv/znsolidaria/vendor/symfony/console/Application.php(166): Symfony\\Component\\Console\\Application->doRun()
+#2 /mnt/srv/znsolidaria/vendor/laravel/framework/src/Illuminate/Console/Application.php(92): Symfony\\Component\\Console\\Application->run()
+#3 /mnt/srv/znsolidaria/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 /mnt/srv/znsolidaria/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 
