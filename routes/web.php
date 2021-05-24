@@ -51,6 +51,7 @@ Route::put('/acoes/comunidade/editObs/{ComunidadeID}', [ComunidadeController::cl
 
 /*ROTAS DOS MENUS DAS FAMILIAS*/
 Route::get('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoes.familia.index');
+Route::post('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoes.familia.index.busca');//POST USADO PARA BUSCA
 Route::get('/acoes/familiaAddView', [FamiliaController::class, 'familiaAddView' ])->name('acoes.familia.addView');
 Route::post('/acoes/familiaAdd', [FamiliaController::class, 'familiaAdd' ])->name('acoes.familia.add');
 Route::get('/acoes/familiaPerfilView/{perfil}', [FamiliaController::class, 'familiaPerfilView' ])->name('acoes.familia.PerfilView');

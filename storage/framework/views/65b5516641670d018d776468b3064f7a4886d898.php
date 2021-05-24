@@ -8,14 +8,61 @@
         <h3>Cadastro de Familias</h3>
       </div>
 
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5  form-group pull-right top_search">
-          <div class="input-group">
-            <a href="<?php echo e(route('acoes.familia.addView')); ?>" class="btn btn-default btn-success" >Novo <i class="fa fa-plus"></i></a>
-            <input type="text" class="form-control" placeholder="Procurar por CPF ">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
+      <form action="<?php echo e(route('acoes.familia.index.busca')); ?> " method="post">
+        <?php echo csrf_field(); ?>
+        <div class="title_right">
+          <div class="col-md-5 col-sm-5  form-group pull-right top_search">
+            <div class="input-group">
+              <a href="<?php echo e(route('acoes.familia.addView')); ?>" class="btn btn-default btn-success" >Novo <i class="fa fa-plus"></i></a>
+              <input type="number" name="cpf" class="form-control" placeholder="Procurar por CPF">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    
+    <div class="row" style="display: <?php echo e($classe); ?>;">
+      <div class="col-md-6 col-sm-6">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Retorno da busca</h2>
+            <ul class="nav navbar-right panel_toolbox">
+              </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Visualizar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $__currentLoopData = $buscas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $busca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <tr>
+                    <th scope="row"><?php echo e($busca->ip); ?></th>
+                    <td><?php echo e($busca->nome); ?></td>
+                    <td><?php echo e($busca->cpf); ?></td>
+                    <td>
+                      <a href="<?php echo e(route('acoes.familia.PerfilView',['perfil' => $busca->id])); ?>" class="btn btn-primary btn-sm">
+                        <i class="fa fa-user"> </i> Ver Perfil
+                      </a>
+                    </td>
+                  </tr>    
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </tbody>
+            </table>
+
           </div>
         </div>
       </div>

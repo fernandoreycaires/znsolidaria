@@ -13,9 +13,17 @@ use Illuminate\Http\Request;
 
 class FamiliaController extends Controller
 {
-    public function familia()
+    public function familia(Request $request)
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
+
+        //dd($request);
+
+        $buscas = Familia::where('cpf', $request->cpf)->get();
+        $classe = 'none';
+        if ($request->cpf != "") {
+            $classe = 'block';
+        }
 
         $familias = Familia::all();
         $comunidades = Comunidade::all();
@@ -24,7 +32,7 @@ class FamiliaController extends Controller
         $telefones = FamiliaTelefone::all();
         $observacoes = FamiliaObservacao::all();
 
-        return view('sistema.acoes.familia.index', compact('user', 'familias', 'comunidades', 'emails', 'enderecos', 'telefones', 'observacoes'));
+        return view('sistema.acoes.familia.index', compact('user','familias','comunidades','emails','enderecos','telefones','observacoes','classe','buscas'));
     }
 
     public function familiaAddView()
