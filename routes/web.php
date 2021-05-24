@@ -54,6 +54,7 @@ Route::get('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoe
 Route::get('/acoes/familiaAddView', [FamiliaController::class, 'familiaAddView' ])->name('acoes.familia.addView');
 Route::post('/acoes/familiaAdd', [FamiliaController::class, 'familiaAdd' ])->name('acoes.familia.add');
 Route::get('/acoes/familiaPerfilView/{perfil}', [FamiliaController::class, 'familiaPerfilView' ])->name('acoes.familia.PerfilView');
+Route::put('/acoes/familiaPerfilView/{perfil}/edit', [FamiliaController::class, 'familiaEdit' ])->name('acoes.familia.PerfilEdit');
 
 
 /*ROTAS DO MENUS DO FINANCEIRO*/

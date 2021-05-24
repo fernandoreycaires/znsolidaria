@@ -38,7 +38,7 @@
                   <!--Janela Modal referente ao endereço da comunidade-->
                   <!-- Modal -->
                   <div class="modal fade" id="editarEndereco" tabindex="-1" aria-labelledby="editarEnderecoLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="editarEnderecoLabel">Editar Endereço da Comunidade</h5>
@@ -102,7 +102,7 @@
                 <!--Janela Modal referente Adicionar novo Contato-->
                 <!-- Modal -->
                 <div class="modal fade" id="addContato" tabindex="-1" aria-labelledby="addContatoLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                       <form action="{{route('acoes.comunidade.addResponsavel')}} " method="post">
                         @csrf
@@ -345,7 +345,7 @@
                       <!--Janela Modal referente Observações-->
                       <!-- Modal -->
                       <div class="modal fade" id="observacaoEdit" tabindex="-1" aria-labelledby="addContatoLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
                           <div class="modal-content">
                             <form action="{{route('acoes.comunidade.editObs', ['ComunidadeID' => $comunidadeID->id])}} " method="post">
                               @csrf

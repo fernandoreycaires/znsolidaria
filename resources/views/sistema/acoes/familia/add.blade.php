@@ -96,7 +96,7 @@
                 <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email
                 </label>
                 <div class="col-md-6 col-sm-6 ">
-                  <input type="text" id="email" name="email" required="required" class="form-control">
+                  <input type="text" id="email" name="email" class="form-control">
                 </div>
               </div>
 
@@ -144,7 +144,7 @@
                 <label for="observacao" class="col-form-label col-md-3 col-sm-3 label-align">Observação
                 </label>
                 <div class="col-md-6 col-sm-6">
-                  <textarea id="observacao" class="form-control" name="observacao" required="required" placeholder="Breve observação ou nada a declarar"></textarea>
+                  <textarea id="observacao" class="form-control" name="observacao" placeholder="Breve observação ou nada a declarar"></textarea>
                 </div>
               </div>
 

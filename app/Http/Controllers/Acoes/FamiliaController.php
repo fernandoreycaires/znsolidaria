@@ -77,6 +77,40 @@ class FamiliaController extends Controller
         return redirect()->route('acoes.familia.index');
     }
 
+    public function familiaEdit(Familia $perfil, Request $request)
+    {
+        $perfil->comunidade = $request->comunidade;
+        $perfil->nome = $request->nome;
+        $perfil->nascimento = $request->nascimento;
+        $perfil->cpf = $request->cpf;
+        $perfil->rg = $request->rg;
+        $perfil->estado_civil = $request->estado_civil;
+        $perfil->save();
+
+        $telefone = FamiliaTelefone::where('familia', $perfil->id )->first();
+        $telefone->telefone = $request->telefone;
+        $telefone->save();
+
+        $email = FamiliaEmail::where('familia', $perfil->id )->first();
+        $email->email = $request->email;
+        $email->save();
+
+        $endereco = FamiliaEndereco::where('familia', $perfil->id )->first();
+        $endereco->logradouro = $request->endereco;
+        $endereco->numero = $request->numero;
+        $endereco->bairro = $request->bairro;
+        $endereco->cidade = $request->cidade;
+        $endereco->estado = $request->estado;
+        $endereco->save();
+
+        $observacao = FamiliaObservacao::where('familia', $perfil->id )->first();
+        $observacao->observacao = $request->observacao;
+        $observacao->save();
+        
+
+        return redirect()->route('acoes.familia.PerfilView',['perfil'=>$perfil->id]);
+    }
+
     public function familiaPerfilView(Familia $perfil)
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
@@ -84,7 +118,10 @@ class FamiliaController extends Controller
         $endereco = $perfil->familia_endereco()->first();
         $telefone = $perfil->familia_telefone()->first();
         $email = $perfil->familia_email()->first();
+        $observacao = $perfil->familia_observacao()->first();
 
-        return view('sistema.acoes.familia.perfil', compact('user', 'perfil', 'endereco', 'telefone', 'email'));
+        $comunidades = Comunidade::all();
+
+        return view('sistema.acoes.familia.perfil', compact('user', 'perfil', 'endereco', 'telefone', 'email','observacao','comunidades'));
     }
 }
