@@ -27,10 +27,10 @@ class ComunidadeController extends Controller
 
         //Faz contagem na tabela familia da coluna comunidade
         //https://laravel.com/docs/8.x/collections    buscar por countBy()
-        $qtdfamilias = Familia::all()->countBy('comunidade'); 
-        if (!$qtdfamilias) {
-            $qtdfamilias = 0;
-        }
+        //$qtdfamilias = Familia::all()->countBy('comunidade'); 
+        //if (!$qtdfamilias) {
+        //    $qtdfamilias = 0;
+        //}
         
         return view('sistema.acoes.comunidade.index', compact('user', 'qtdcomunidades', 'qtdfamilias' ,'comunidades'));
     }
