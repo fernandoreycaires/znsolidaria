@@ -24,8 +24,12 @@ class ComunidadeController extends Controller
 
         $comunidades = Comunidade::all()->sortByDesc('id');
         $qtdcomunidades = Comunidade::all()->count();
+
+        //Faz contagem na tabela familia da coluna comunidade
+        //https://laravel.com/docs/8.x/collections    buscar por countBy()
+        $qtdfamilias = Familia::all()->countBy('comunidade'); 
         
-        return view('sistema.acoes.comunidade.index', compact('user', 'qtdcomunidades' ,'comunidades'));
+        return view('sistema.acoes.comunidade.index', compact('user', 'qtdcomunidades', 'qtdfamilias' ,'comunidades'));
     }
 
     public function addView()

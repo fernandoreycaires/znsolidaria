@@ -46,7 +46,7 @@
                 <tr>
                   <th scope="row">{{$comunidade->id}}</th>
                   <td>{{$comunidade->comunidade}} </td>
-                  <td>325</td>
+                  <td>{{$qtdfamilias[$comunidade->id]}}</td>
                   <td><a href="{{route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])}}"><i class="fa fa-eye text-success"></i></a></td>
                 </tr>    
                 @endforeach
