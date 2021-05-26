@@ -46,8 +46,9 @@
                 <tr>
                   <th scope="row">{{$comunidade->id}}</th>
                   <td>{{$comunidade->comunidade}} </td>
-                  <td>0</td>
+                  <td>0</td>                  
                   <td><a href="{{route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])}}"><i class="fa fa-eye text-success"></i></a></td>
+                
                 </tr>    
                 @endforeach
               </tbody>
@@ -68,6 +69,19 @@
 
                 <h3>Comunidades</h3>
                 <p>Comunidades em assistencia.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="x_content">
+            <div class="animated flipInY">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-user"></i>
+                </div>
+                <div class="count">{{$qtdfamilias}} </div>
+
+                <h3>Familias</h3>
+                <p>Total de familias em assistencia.</p>
               </div>
             </div>
           </div>

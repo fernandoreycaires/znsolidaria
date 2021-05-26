@@ -13,7 +13,7 @@
         <li><a><i class="fa fa-thumb-tack"></i> Ações <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
           <!-- <li><a href="<?php echo e(route('acoes.dashboard')); ?>">Dashboard</a></li> -->
-          <!--  <li><a href="<?php echo e(route('acoes.acoes')); ?>">Ações</a></li>  -->
+          <li><a href="<?php echo e(route('acoes.acoes')); ?>">Ações</a></li>
           <!--  <li><a href="<?php echo e(route('acoes.arrecadacao.index')); ?>">Arrecadações</a></li> -->
             <li><a href="<?php echo e(route('acoes.comunidade.index')); ?> ">Comunidades</a></li>
             <li><a href="<?php echo e(route('acoes.familia.index')); ?> ">Familias</a></li> 

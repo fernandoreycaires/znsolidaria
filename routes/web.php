@@ -48,6 +48,7 @@ Route::put('/acoes/comunidade/editEndereco/{endComunidadeID}', [ComunidadeContro
 Route::post('/acoes/comunidade/inserirResponsavel', [ComunidadeController::class, 'addResponsavel'])->name('acoes.comunidade.addResponsavel');
 Route::delete('/acoes/comunidade/apagarResponsavel/{respComunidadeID}', [ComunidadeController::class, 'apagarResponsavel'])->name('acoes.comunidade.apagarResponsavel');
 Route::put('/acoes/comunidade/editObs/{ComunidadeID}', [ComunidadeController::class, 'editObs' ])->name('acoes.comunidade.editObs');
+Route::put('/acoes/comunidade/editApelido/{ComunidadeID}', [ComunidadeController::class, 'editApelido' ])->name('acoes.comunidade.editApelido');
 
 /*ROTAS DOS MENUS DAS FAMILIAS*/
 Route::get('/acoes/familia', [FamiliaController::class, 'familia' ])->name('acoes.familia.index');

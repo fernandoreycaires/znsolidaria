@@ -44,8 +44,9 @@
                 <tr>
                   <th scope="row"><?php echo e($comunidade->id); ?></th>
                   <td><?php echo e($comunidade->comunidade); ?> </td>
-                  <td><?php echo e($qtdfamilias[$comunidade->id]); ?></td>
+                  <td>0</td>                  
                   <td><a href="<?php echo e(route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])); ?>"><i class="fa fa-eye text-success"></i></a></td>
+                
                 </tr>    
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
               </tbody>
@@ -66,6 +67,19 @@
 
                 <h3>Comunidades</h3>
                 <p>Comunidades em assistencia.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="x_content">
+            <div class="animated flipInY">
+              <div class="tile-stats">
+                <div class="icon"><i class="fa fa-user"></i>
+                </div>
+                <div class="count"><?php echo e($qtdfamilias); ?> </div>
+
+                <h3>Familias</h3>
+                <p>Total de familias em assistencia.</p>
               </div>
             </div>
           </div>

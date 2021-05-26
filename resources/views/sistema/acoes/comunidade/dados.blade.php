@@ -11,7 +11,36 @@
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
             <div class="x_title">
-              <h2><a href="{{route('acoes.comunidade.index')}}"><i class="fa fa-chevron-left"></i></a> {{$comunidadeID->comunidade}}<small>- Dados da Comunidade</small></h2>
+              <h2><a href="{{route('acoes.comunidade.index')}}"><i class="fa fa-chevron-left"></i></a> {{$comunidadeID->comunidade}}<small>- Dados da Comunidade <button type="button" class="btn btn-sm text-success" data-bs-toggle="modal" data-bs-target="#editarApelido"><i class="fa fa-edit m-right-xs"></i></button></small></h2>
+              <!--Janela Modal referente à edição do Apelido da comunidade-->
+                  <!-- Modal -->
+                  <div class="modal fade" id="editarApelido" tabindex="-1" aria-labelledby="editarApelidoLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="editarApelidoLabel">Editar Apelido da Comunidade</h5>
+                        </div>
+                        <form action="{{route('acoes.comunidade.editApelido', ['ComunidadeID' => $comunidadeID->id])}}" method="post">
+                          @csrf
+                          @method('PUT')
+                          <div class="modal-body">
+                            <div class="mb-3 row">
+                              <label for="comunidade" class="col-sm-2 col-form-label">Comunidade</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="comunidade" name="comunidade" value="{{$comunidadeID->comunidade}}">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ./ Janela Modal-->
 
               <div class="clearfix"></div>
             </div>
@@ -347,7 +376,7 @@
                       <div class="modal fade" id="observacaoEdit" tabindex="-1" aria-labelledby="addContatoLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                           <div class="modal-content">
-                            <form action="{{route('acoes.comunidade.editObs', ['ComunidadeID' => $comunidadeID->id])}} " method="post">
+                            <form action="{{route('acoes.comunidade.editObs', ['ComunidadeID' => $comunidadeID->id])}}" method="post">
                               @csrf
                               @method('PUT')
                               <div class="modal-header">

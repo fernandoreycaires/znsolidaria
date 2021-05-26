@@ -27,10 +27,14 @@ class ComunidadeController extends Controller
 
         //Faz contagem na tabela familia da coluna comunidade
         //https://laravel.com/docs/8.x/collections    buscar por countBy()
-        //$qtdfamilias = Familia::all()->countBy('comunidade'); 
-        //if (!$qtdfamilias) {
-            $qtdfamilias = 0;
+        
+        $qtdfamilias = Familia::all()->count(); 
+        $qtdfamiliaComunidade = (['1' => '0']);
+
+        //if ($qtdfamilias != 0) {
+        //    $qtdfamiliaComunidade = Familia::all()->countBy('comunidade'); 
         //}
+
         
         return view('sistema.acoes.comunidade.index', compact('user', 'qtdcomunidades', 'qtdfamilias' ,'comunidades'));
     }
@@ -115,6 +119,14 @@ class ComunidadeController extends Controller
     public function editObs(Comunidade $ComunidadeID, Request $request)
     {
         $ComunidadeID->observacao = $request->observacao;
+        $ComunidadeID->save();
+
+        return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $ComunidadeID->id]);
+    }
+
+    public function editApelido(Comunidade $ComunidadeID, Request $request)
+    {
+        $ComunidadeID->comunidade = $request->comunidade;
         $ComunidadeID->save();
 
         return redirect()->route('acoes.comunidade.dados',['comunidadeID' => $ComunidadeID->id]);
