@@ -35,4 +35,9 @@ class Familia extends Model
     {
         return $this->hasMany(FamiliaTelefone::class, 'familia', 'id');
     }
+
+    public function familia_acoes()
+    {
+        return $this->hasMany(AcoesFamilia::class, 'familia', 'id');
+    }
 }

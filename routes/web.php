@@ -35,6 +35,8 @@ Route::get('/home', [HomeController::class, 'home'] )->name('home');
 /*ROTAS DOS MENUS DAS AÇÕES*/
 Route::get('/acoes/dashboard', [AcoesController::class, 'dashboard' ])->name('acoes.dashboard'); //DASHBOARD
 Route::get('/acoes/acoes', [AcoesController::class, 'acoes' ])->name('acoes.acoes');
+Route::get('/acoes/acoes/addView', [AcoesController::class, 'acoesAddView' ])->name('acoes.acoes.addView');
+Route::post('/acoes/acoes/add', [AcoesController::class, 'acoesAdd' ])->name('acoes.acoes.add');
 
 /*ROTAS DOS MENUS DAS ARRECADAÇÕES*/
 Route::get('/acoes/arrecadacao', [ArrecadacaoController::class, 'arrecadacao' ])->name('acoes.arrecadacao.index');

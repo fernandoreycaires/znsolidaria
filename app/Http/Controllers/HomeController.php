@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Acoes;
 use App\Models\Comunidade;
 use App\Models\Familia;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ class HomeController extends Controller
 
         $comunidades = Comunidade::all()->count();
         $familias = Familia::all()->count();
+        $acoes = Acoes::all()->count();
         
-        return view('sistema.index', compact('user', 'comunidades', 'familias'));
+        return view('sistema.index', compact('user', 'comunidades', 'familias', 'acoes'));
     }
 }

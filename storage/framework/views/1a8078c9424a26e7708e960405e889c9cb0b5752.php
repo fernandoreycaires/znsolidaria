@@ -42,7 +42,7 @@
                   <div class="tile-stats">
                     <div class="icon"><i class="fa fa-book"></i>
                     </div>
-                    <div class="count">0</div>
+                    <div class="count"><?php echo e($acoes); ?> </div>
 
                     <h3>Ações</h3>
                     <p>Ações programadas este ano.</p>
