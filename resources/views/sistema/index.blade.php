@@ -47,7 +47,7 @@
                     <div class="count">{{$acoes}} </div>
 
                     <h3>Ações</h3>
-                    <p>Ações programadas este ano.</p>
+                    <p>Ações programadas e realizadas por este projeto.</p>
                   </div>
                 </div>
 

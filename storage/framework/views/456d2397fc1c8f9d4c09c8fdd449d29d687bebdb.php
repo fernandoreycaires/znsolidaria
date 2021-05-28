@@ -29,12 +29,13 @@
                   <?php $data = strtotime($acao->dia); 
                         $dia = date('d',$data);
                         $mes = date('M',$data);
+                        $ano = date('Y',$data);
                   ?>
                   <li>
                     <img src="<?php echo e(asset('image/fotos/painel1.jpg')); ?>" class="avatar" alt="Avatar">
                     <div class="message_date">
                       <h3 class="date text-info"><?php echo e($dia); ?></h3>
-                      <p class="month"><?php echo e($mes); ?> </p>
+                      <p class="month"><?php echo e($mes); ?> / <?php echo e($ano); ?> </p>
                     </div>
                     <div class="message_wrapper">
                       <?php $__currentLoopData = $comunidades; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comunidade): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

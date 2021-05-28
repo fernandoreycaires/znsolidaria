@@ -23,11 +23,11 @@ class Acoes extends Model
 
     public function acoes_familia()
     {
-        return $this->hasMany(AcoesArrecadacao::class, 'acao', 'id');
+        return $this->hasMany(AcoesFamilia::class, 'acao', 'id');
     }
 
     public function acoes_local()
     {
-        return $this->hasMany(AcoesArrecadacao::class, 'acao', 'id');
+        return $this->hasMany(AcoesLocal::class, 'acao', 'id');
     }
 }

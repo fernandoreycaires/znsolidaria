@@ -61,12 +61,26 @@ class AcoesController extends Controller
         return redirect()->route('acoes.acoes');
     }
 
+    public function acaoEditLocal(AcoesLocal $acaoLocal, Request $request)
+    {
+        $acaoLocal->nome_local = $request->nomeLugar;
+        $acaoLocal->rua = $request->ruaLugar;
+        $acaoLocal->numero = $request->numeroLugar;
+        $acaoLocal->bairro = $request->bairroLugar;
+        $acaoLocal->cep = $request->cepLugar;
+        $acaoLocal->mapa = $request->mapaLugar;
+        $acaoLocal->save();
+
+        return redirect()->route('acoes.acoes.acaoView',['acao'=>$acaoLocal->id]);
+    }
+
     public function acaoView(Acoes $acao)
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
 
         $comunidade = $acao->comunidade()->first();
+        $acao_local = $acao->acoes_local()->first();
 
-        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade'));
+        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade', 'acao_local'));
     }
 }

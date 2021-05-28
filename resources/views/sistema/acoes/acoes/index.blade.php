@@ -31,12 +31,13 @@
                   <?php $data = strtotime($acao->dia); 
                         $dia = date('d',$data);
                         $mes = date('M',$data);
+                        $ano = date('Y',$data);
                   ?>
                   <li>
                     <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
                     <div class="message_date">
                       <h3 class="date text-info">{{ $dia }}</h3>
-                      <p class="month">{{$mes}} </p>
+                      <p class="month">{{$mes}} / {{$ano}} </p>
                     </div>
                     <div class="message_wrapper">
                       @foreach ($comunidades as $comunidade)

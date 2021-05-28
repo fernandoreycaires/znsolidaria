@@ -39,3 +39,35 @@
 
 <!-- Custom Theme Scripts -->
 <script src="{{asset('theme_lib/build/js/custom.min.js')}}"></script>
+
+<!-- Customizado -->
+
+<!-- TELA /SISTEMA/ACOES/ACOES/ACAO -->
+<!-- Widget GAUGE doações -->
+<script type="text/javascript">
+    var opts = {
+      angle: 0, 
+      lineWidth: 0.44,
+      radiusScale: 1, // Raio relativo
+      pointer: {
+        length: 0.6, // // Relativo ao raio do Gauge
+        strokeWidth: 0.035, // Largura do traço
+        color: '#000000' // Cor do ponteiro
+      },
+      limitMax: false,     // Se false, valor maximo aumenta automaticamente se valor > valor maximo
+      limitMin: false,     // Se true, o valor mínimo será fixo
+      colorStart: '#1ABC9C',   // Cores
+      colorStop: '#1ABC9C',    
+      strokeColor: '#F0F3F3',  
+      generateGradient: true,
+      highDpiSupport: true,  
+      
+    };
+    var target = document.getElementById('chart_gauge_doacao'); // Elemento onde o gauge deve ser criado
+    var gauge = new Gauge(target).setOptions(opts); // Criar gauge
+    gauge.maxValue = 200; // Valor maximo
+    gauge.setMinValue(0);  // Valor minimo
+    gauge.animationSpeed = 32; // Velocidade da animacao
+    gauge.set(50); // Valor a ser marcado pelo ponteiro
+</script>
+<!-- ./Widget GAUGE doações -->

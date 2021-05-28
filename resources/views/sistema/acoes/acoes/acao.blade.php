@@ -21,9 +21,11 @@
             $data = strtotime($acao->dia); 
             $dia = date('d',$data);
             $mes = date('M',$data);
+            $ano = date('Y',$data);
+
           ?>
           <p style="font-size: 100pt">{{$dia}} </p>
-          <p style="font-size: 20pt">{{$mes}} </p>
+          <p style="font-size: 20pt">{{$mes}} / {{$ano}}</p>
 
         </div>
       </div>
@@ -36,60 +38,67 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <table class="" style="width:100%">
-            <tr>
-              <th style="width:37%;">
-                <p>Top 5</p>
-              </th>
-              <th>
-                <div class="col-lg-7 col-md-7 col-sm-7 ">
-                  <p class="">Device</p>
-                </div>
-                <div class="col-lg-5 col-md-5 col-sm-5 ">
-                  <p class="">Progress</p>
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-              </td>
-              <td>
-                <table class="tile_info">
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square blue"></i>IOS </p>
-                    </td>
-                    <td>30%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square green"></i>Android </p>
-                    </td>
-                    <td>10%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square purple"></i>Blackberry </p>
-                    </td>
-                    <td>20%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square aero"></i>Symbian </p>
-                    </td>
-                    <td>15%</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <p><i class="fa fa-square red"></i>Others </p>
-                    </td>
-                    <td>30%</td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
+          <p>Dados do Local da Ação &nbsp; <button class="btn btn-sm text-success" data-bs-toggle="modal" data-bs-target="#editDados"><i class="fa fa-pencil-square-o"></i></button></p>
+          <p><i class="fa fa-home"></i> {{$acao_local->nome_local}} </p>
+          <p><i class="fa fa-map-marker"></i> {{$acao_local->rua}},{{$acao_local->numero}} - {{$acao_local->bairro}} | {{$acao_local->cep}}</p>
+          <p><iframe src="{{$acao_local->mapa}}" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>  </p>
+          <!-- Modal Edição -->
+          <div class="modal fade" id="editDados" tabindex="-1" aria-labelledby="addContatoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <form action="{{route('acoes.acoes.acaoEditLocal',['acaoLocal'=>$acao_local->id])}}" method="post">
+                  @csrf
+                  @method('PUT')
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addContatoLabel">Editar Dados do Local</h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="mb-3 row">
+                      <label for="nomeLugar" class="col-sm-2 col-form-label">Nome do Local</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nomeLugar" name="nomeLugar" placeholder="Nome do lugar da Ação" value="{{$acao_local->nome_local}}" >
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="ruaLugar" class="col-sm-2 col-form-label">Rua</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ruaLugar" name="ruaLugar" value="{{$acao_local->rua}}" >
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="numeroLugar" class="col-sm-2 col-form-label">Número</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="numeroLugar" name="numeroLugar" value="{{$acao_local->numero}}" >
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="bairroLugar" class="col-sm-2 col-form-label">Bairro</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="bairroLugar" name="bairroLugar" value="{{$acao_local->bairro}}" >
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="cepLugar" class="col-sm-2 col-form-label">CEP</label>
+                      <div class="col-sm-10">
+                        <input type="number" class="form-control" id="cepLugar" name="cepLugar" value="{{$acao_local->cep}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3 row">
+                      <label for="mapaLugar" class="col-sm-2 col-form-label">Mapa</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="mapaLugar" name="mapaLugar" value="{{$acao_local->mapa}}"  >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- ./ Janela Modal-->
         </div>
       </div>
     </div>
@@ -98,20 +107,7 @@
     <div class="col-md-4 col-sm-4 ">
       <div class="x_panel tile fixed_height_320">
         <div class="x_title">
-          <h2>Quick Settings</h2>
-          <ul class="nav navbar-right panel_toolbox">
-            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Settings 1</a>
-                  <a class="dropdown-item" href="#">Settings 2</a>
-                </div>
-            </li>
-            <li><a class="close-link"><i class="fa fa-close"></i></a>
-            </li>
-          </ul>
+          <h2>Doações</h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -132,14 +128,16 @@
             </ul>
 
             <div class="sidebar-widget">
-                <h4>Profile Completion</h4>
-                <canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
+                <h4>Arrecadações</h4>
+                <!--Configuração desse grafico está em /LAYOUT/JAVASCRIPT-->
+                <canvas width="150" height="80" id="chart_gauge_doacao" class="" style="width: 160px; height: 100px;"></canvas>
                 <div class="goal-wrapper">
                   <span id="gauge-text" class="gauge-value pull-left">0</span>
                   <span class="gauge-value pull-left">%</span>
                   <span id="goal-text" class="goal-value pull-right">100%</span>
                 </div>
             </div>
+            
           </div>
         </div>
       </div>
