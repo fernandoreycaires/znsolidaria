@@ -13,12 +13,12 @@ class ComunidadeTelResponsavel extends Model
 
     public function responsavel_comunidade()
     {
-        return $this->belongsTo(ComunidadeResponsavel::class, 'id', 'resp_comunidade');
+        return $this->belongsTo(ComunidadeResponsavel::class, 'resp_comunidade', 'id');
     }
 
     public function comunidade()
     {
-        return $this->belongsTo(Comunidade::class, 'id', 'comunidade');
+        return $this->belongsTo(Comunidade::class, 'comunidade', 'id');
     }
 
 }

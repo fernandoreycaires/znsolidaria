@@ -13,7 +13,7 @@ class Acoes extends Model
 
     public function comunidade()
     {
-        return $this->belongsTo(Comunidade::class, 'id', 'comunidade');
+        return $this->belongsTo(Comunidade::class, 'comunidade', 'id');
     }
 
     public function acoes_arrecadacao()

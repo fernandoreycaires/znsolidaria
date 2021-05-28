@@ -13,6 +13,6 @@ class ComunidadeEndereco extends Model
 
     public function comunidade()
     {
-        return $this->belongsTo(Comunidade::class, 'id', 'comunidade');
+        return $this->belongsTo(Comunidade::class, 'comunidade', 'id');
     }
 }

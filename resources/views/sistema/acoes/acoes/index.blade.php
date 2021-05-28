@@ -28,8 +28,8 @@
               <!-- start recent activity -->
               <ul class="messages">
                 @foreach ($acoes as $acao)
-                  <?php $data = strtotime($acao->dia); ?>
-                  <?php $dia = date('d',$data);
+                  <?php $data = strtotime($acao->dia); 
+                        $dia = date('d',$data);
                         $mes = date('M',$data);
                   ?>
                   <li>
@@ -48,7 +48,7 @@
                       <br>
                       <p class="url">
                         <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                        <a href="#"><i class="fa fa-eye"></i> Visualizar Ação</a>
+                        <a href="{{route('acoes.acoes.acaoView',['acao'=>$acao->id])}} "><i class="fa fa-eye"></i> Visualizar Ação</a>
                       </p>
                     </div>
                 </li>

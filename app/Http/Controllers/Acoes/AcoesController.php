@@ -60,4 +60,13 @@ class AcoesController extends Controller
 
         return redirect()->route('acoes.acoes');
     }
+
+    public function acaoView(Acoes $acao)
+    {
+        $user = Auth()->user() ; //Pega os dados do Usuario logado
+
+        $comunidade = $acao->comunidade()->first();
+
+        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade'));
+    }
 }

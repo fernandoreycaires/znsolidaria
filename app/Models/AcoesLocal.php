@@ -13,6 +13,6 @@ class AcoesLocal extends Model
 
     public function acao()
     {
-        return $this->belongsTo(Acoes::class, 'id', 'acao');
+        return $this->belongsTo(Acoes::class, 'acao', 'id');
     }
 }

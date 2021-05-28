@@ -13,11 +13,11 @@ class AcoesFamilia extends Model
 
     public function familia()
     {
-        return $this->belongsTo(Familia::class, 'id', 'familia');
+        return $this->belongsTo(Familia::class, 'familia', 'id');
     }
 
     public function acao()
     {
-        return $this->belongsTo(Acoes::class, 'id', 'acao');
+        return $this->belongsTo(Acoes::class, 'acao', 'id');
     }
 }

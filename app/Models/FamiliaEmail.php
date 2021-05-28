@@ -13,7 +13,7 @@ class FamiliaEmail extends Model
 
     public function familia()
     {
-        return $this->belongsTo(Familia::class, 'id', 'familia');
+        return $this->belongsTo(Familia::class, 'familia', 'id');
     }
     
 }
