@@ -34,7 +34,7 @@
     <div class="col-md-5 col-sm-5 ">
       <div class="x_panel tile fixed_height_320 overflow_hidden">
         <div class="x_title">
-          <h2>{{$comunidade->comunidade}} </h2>
+          <h2>{{$comunidade->comunidade}} &nbsp; <a href="{{route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])}}"><i class="fa fa-eye text-success"></i></a></h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -140,12 +140,21 @@
     <div class="col-md-4 col-sm-4 ">
       <div class="x_panel">
         <div class="x_title">
-          <h2>Responsáveis <small>nesta ação</small></h2>
+          <h2>Responsáveis <small>nesta comunidade</small></h2>
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
           <div class="dashboard-widget-content">
-            <p>Listar responsaveis por essa ação</p>
+            @foreach ($responsaveis as $responsavel)
+            <p><i class="fa fa-user"></i>&nbsp; {{$responsavel->nome}}</p>
+              <!--telefone do responsavel-->              
+              @foreach ($responsaveisTel as $responsavelTel)
+                @if ($responsavelTel->resp_comunidade == $responsavel->id)
+                  <p><i class="fa fa-phone"></i>&nbsp; {{$responsavelTel->telefone}}</p>
+                @endif
+              @endforeach
+            <hr>
+            @endforeach
           </div>
         </div>
       </div>

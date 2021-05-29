@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Acoes;
 use App\Models\AcoesLocal;
 use App\Models\Comunidade;
+use App\Models\ComunidadeResponsavel;
+use App\Models\ComunidadeTelResponsavel;
 use Illuminate\Http\Request;
 
 class AcoesController extends Controller
@@ -81,6 +83,9 @@ class AcoesController extends Controller
         $comunidade = $acao->comunidade()->first();
         $acao_local = $acao->acoes_local()->first();
 
-        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade', 'acao_local'));
+        $responsaveis = ComunidadeResponsavel::where('comunidade', $acao->comunidade)->get();
+        $responsaveisTel = ComunidadeTelResponsavel::where('comunidade', $acao->comunidade)->get();
+
+        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade', 'acao_local', 'responsaveis', 'responsaveisTel'));
     }
 }
