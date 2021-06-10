@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Acoes;
 
 use App\Http\Controllers\Controller;
+use App\Models\Acoes;
 use App\Models\Comunidade;
 use App\Models\ComunidadeEmailResponsavel;
 use App\Models\ComunidadeEndereco;
@@ -142,7 +143,8 @@ class ComunidadeController extends Controller
         $emailresponsaveis = $comunidadeID->comunidade_emailresponsavel()->get();
 
         $familias = Familia::where('comunidade', $comunidadeID->id)->get();
+        $acoes = Acoes::where('comunidade', $comunidadeID->id)->get()->sortByDesc('dia');
 
-        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco', 'responsaveis', 'telresponsaveis', 'emailresponsaveis', 'familias'));
+        return view('sistema.acoes.comunidade.dados', compact('user','comunidadeID','endereco', 'responsaveis', 'telresponsaveis', 'emailresponsaveis', 'familias', 'acoes'));
     }
 }

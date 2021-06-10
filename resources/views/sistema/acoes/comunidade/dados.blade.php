@@ -266,75 +266,33 @@
                   <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane active " id="tab_content1" aria-labelledby="home-tab">
 
-                      <!-- start recent activity -->
+                      <!-- start açoes -->
                       <ul class="messages">
-                        <li>
-                          <img src="{{ asset('image/fotos/painel1.jpg') }}" class="avatar" alt="Avatar">
-                          <div class="message_date">
-                            <h3 class="date text-info">24</h3>
-                            <p class="month">May</p>
-                          </div>
-                          <div class="message_wrapper">
-                            <h4 class="heading">Desmond Davison</h4>
-                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                            <br />
-                            <p class="url">
-                              <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                              <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                            </p>
-                          </div>
+                        @foreach ($acoes as $acao)
+                          <?php $data = strtotime($acao->dia); 
+                                $dia = date('d',$data);
+                                $mes = date('M',$data);
+                                $ano = date('Y',$data);
+                          ?>
+                          <li>
+                            <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
+                            <div class="message_date">
+                              <h3 class="date text-info">{{ $dia }}</h3>
+                              <p class="month">{{$mes}} / {{$ano}} </p>
+                            </div>
+                            <div class="message_wrapper">
+                              <h4 class="heading">{{$comunidadeID->comunidade}} </h4>
+                              <blockquote class="message">{{$acao->descricao}} </blockquote>
+                              <br>
+                              <p class="url">
+                                <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                <a href="{{route('acoes.acoes.acaoView',['acao'=>$acao->id])}} "><i class="fa fa-eye"></i> Visualizar Ação</a>
+                              </p>
+                            </div>
                         </li>
-                        <li>
-                          <img src="{{ asset('image/fotos/painel1.jpg') }}" class="avatar" alt="Avatar">
-                          <div class="message_date">
-                            <h3 class="date text-error">21</h3>
-                            <p class="month">May</p>
-                          </div>
-                          <div class="message_wrapper">
-                            <h4 class="heading">Brian Michaels</h4>
-                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                            <br />
-                            <p class="url">
-                              <span class="fs1" aria-hidden="true" data-icon=""></span>
-                              <a href="#" data-original-title="">Download</a>
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <img src="{{ asset('image/fotos/painel1.jpg') }}" class="avatar" alt="Avatar">
-                          <div class="message_date">
-                            <h3 class="date text-info">24</h3>
-                            <p class="month">May</p>
-                          </div>
-                          <div class="message_wrapper">
-                            <h4 class="heading">Desmond Davison</h4>
-                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                            <br />
-                            <p class="url">
-                              <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                              <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <img src="{{ asset('image/fotos/painel1.jpg') }}" class="avatar" alt="Avatar">
-                          <div class="message_date">
-                            <h3 class="date text-error">21</h3>
-                            <p class="month">May</p>
-                          </div>
-                          <div class="message_wrapper">
-                            <h4 class="heading">Brian Michaels</h4>
-                            <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                            <br />
-                            <p class="url">
-                              <span class="fs1" aria-hidden="true" data-icon=""></span>
-                              <a href="#" data-original-title="">Download</a>
-                            </p>
-                          </div>
-                        </li>
-
+                        @endforeach
                       </ul>
-                      <!-- end recent activity -->
+                      <!-- end ações-->
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">

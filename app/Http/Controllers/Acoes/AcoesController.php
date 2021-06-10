@@ -24,7 +24,7 @@ class AcoesController extends Controller
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
 
-        $acoes = Acoes::all();
+        $acoes = Acoes::all()->sortByDesc('dia');
         $comunidades = Comunidade::all();
 
         return view('sistema.acoes.acoes.index', compact('user', 'acoes', 'comunidades'));

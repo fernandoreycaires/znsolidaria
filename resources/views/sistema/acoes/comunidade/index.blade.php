@@ -37,7 +37,6 @@
                 <tr>
                   <th>#</th>
                   <th>Comunidade</th>
-                  <th>Familias</th>
                   <th>Visualizar</th>
                 </tr>
               </thead>
@@ -46,7 +45,6 @@
                 <tr>
                   <th scope="row">{{$comunidade->id}}</th>
                   <td>{{$comunidade->comunidade}} </td>
-                  <td>0</td>                  
                   <td><a href="{{route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])}}"><i class="fa fa-eye text-success"></i></a></td>
                 
                 </tr>    

@@ -35,7 +35,6 @@
                 <tr>
                   <th>#</th>
                   <th>Comunidade</th>
-                  <th>Familias</th>
                   <th>Visualizar</th>
                 </tr>
               </thead>
@@ -44,7 +43,6 @@
                 <tr>
                   <th scope="row"><?php echo e($comunidade->id); ?></th>
                   <td><?php echo e($comunidade->comunidade); ?> </td>
-                  <td>0</td>                  
                   <td><a href="<?php echo e(route('acoes.comunidade.dados',['comunidadeID' => $comunidade->id ])); ?>"><i class="fa fa-eye text-success"></i></a></td>
                 
                 </tr>    
