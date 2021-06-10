@@ -207,36 +207,6 @@
                 <hr>
                 <br>
 
-                <!-- Doações captadas -->
-                <h4>Doações</h4>
-                <ul class="list-unstyled user_data">
-                  <li>
-                    <p>Alguma coisa aqui</p>
-                    <div class="progress progress_sm">
-                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                    </div>
-                  </li>
-                  <li>
-                    <p>Alguma coisa aqui</p>
-                    <div class="progress progress_sm">
-                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
-                    </div>
-                  </li>
-                  <li>
-                    <p>Alguma coisa aqui</p>
-                    <div class="progress progress_sm">
-                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
-                    </div>
-                  </li>
-                  <li>
-                    <p>Alguma coisa aqui</p>
-                    <div class="progress progress_sm">
-                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                    </div>
-                  </li>
-                </ul>
-                <!-- end de doações captadas -->
-
               </div>
               <div class="col-md-9 col-sm-9 ">
                 <!-- start of user-activity-graph 
