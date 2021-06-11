@@ -39,6 +39,10 @@ Route::get('/acoes/acoes/addView', [AcoesController::class, 'acoesAddView' ])->n
 Route::post('/acoes/acoes/add', [AcoesController::class, 'acoesAdd' ])->name('acoes.acoes.add');
 Route::get('/acoes/acoes/acaoView/{acao}', [AcoesController::class, 'acaoView' ])->name('acoes.acoes.acaoView');
 Route::put('/acoes/acoes/acaoEditLocal/{acaoLocal}', [AcoesController::class, 'acaoEditLocal' ])->name('acoes.acoes.acaoEditLocal');
+Route::post('/acoes/acoes/familiaSemRegistro', [AcoesController::class, 'familiaSemRegistroAdd' ])->name('acoes.acoes.familiaSemRegistroAdd');
+Route::post('/acoes/acoes/familiaComRegistro', [AcoesController::class, 'familiaComRegistroAdd' ])->name('acoes.acoes.familiaComRegistroAdd');
+Route::put('/acoes/acoes/presenciou/{acaoFamCad}', [AcoesController::class, 'presenciou' ])->name('acoes.acoes.presenciou');
+
 
 /*ROTAS DOS MENUS DAS ARRECADAÇÕES*/
 Route::get('/acoes/arrecadacao', [ArrecadacaoController::class, 'arrecadacao' ])->name('acoes.arrecadacao.index');

@@ -39,18 +39,18 @@
         </div>
         <div class="x_content">
           <p>Dados do Local da Ação &nbsp; <button class="btn btn-sm text-success" data-bs-toggle="modal" data-bs-target="#editDados"><i class="fa fa-pencil-square-o"></i></button></p>
-          <p><i class="fa fa-home"></i> {{$acao_local->nome_local}} </p>
-          <p><i class="fa fa-map-marker"></i> {{$acao_local->rua}},{{$acao_local->numero}} - {{$acao_local->bairro}} | {{$acao_local->cep}}</p>
+          <p><i class="fa fa-home"></i>&nbsp; {{$acao_local->nome_local}} </p>
+          <p><i class="fa fa-map-marker"></i>&nbsp; {{$acao_local->rua}},{{$acao_local->numero}} - {{$acao_local->bairro}} | {{$acao_local->cep}}</p>
           <p><iframe src="{{$acao_local->mapa}}" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>  </p>
           <!-- Modal Edição -->
-          <div class="modal fade" id="editDados" tabindex="-1" aria-labelledby="addContatoLabel" aria-hidden="true">
+          <div class="modal fade" id="editDados" tabindex="-1" aria-labelledby="editDadosLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
               <div class="modal-content">
                 <form action="{{route('acoes.acoes.acaoEditLocal',['acaoLocal'=>$acao_local->id])}}" method="post">
                   @csrf
                   @method('PUT')
                   <div class="modal-header">
-                    <h5 class="modal-title" id="addContatoLabel">Editar Dados do Local</h5>
+                    <h5 class="modal-title" id="editDadosLabel">Editar Dados do Local</h5>
                   </div>
                   <div class="modal-body">
                     <div class="mb-3 row">
@@ -172,12 +172,127 @@
             </div>
             <div class="x_content">
               <div class="dashboard-widget-content">
-                <div class="col-md-4 hidden-small">
-                  Listar familias cadastradas aqui
+                <div class="col-md-6 hidden-small">
+                  Familias Registradas <button class="btn btn-sm text-success" data-bs-toggle="modal" data-bs-target="#familiaRegistrada"><i class="fa fa-plus"></i></button>
+                  <hr>
+                  @foreach ($listarFamilias as $listar)
+                    @foreach ($familiaCadastrada as $fc)
+                        @if ($fc->familia == $listar->id)
+                          <?php
+                            if ($fc->presenca == "Faltou") {
+                              $cor = "danger";
+                            }else {
+                              $cor = "success";
+                            }
+                          ?>
+                          <div class="alert alert-{{$cor}} alert-dismissible">
+                            <p><strong>Nome: </strong>{{$listar->nome}}</p>
+                            <p><strong>CPF: </strong>{{$listar->cpf}} | <strong>RG: </strong>{{$listar->rg}}</p>
+                            <form action="{{route('acoes.acoes.presenciou',['acaoFamCad'=>$fc->id])}} " method="post">
+                              @csrf
+                              @method('PUT')
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-check"> Presente </i></button>
+                                <input type="hidden" name="presenciou" value="Presenciou">
+                            </form>
+                          </div>
+                        @endif
+                    @endforeach
+                  @endforeach
                 </div>
-                <div class="col-md-8 hidden-small">
-                  Um espaço grande aqui 
+                <div class="col-md-6 hidden-small">
+                  Familias que participaram sem registro <button class="btn btn-sm text-success" data-bs-toggle="modal" data-bs-target="#familiaNaoRegistrada"><i class="fa fa-pencil-square-o"></i></button>
+                  <hr>
+                  @foreach ($familiaNaoCadastrada as $fnc)
+                    <div class="alert alert-info alert-dismissible">
+                      <p><strong>Nome: </strong>{{$fnc->nome}}</p>
+                      <p><strong>CPF: </strong>{{$fnc->cpf}} | <strong>RG: </strong>{{$fnc->rg}}</p>
+                      <p><strong>Telefone: </strong>{{$fnc->telefone}}</p>
+                    </div>
+                  @endforeach
                 </div>
+
+                  <!-- Modal Familias Registradas -->
+                  <div class="modal fade" id="familiaRegistrada" tabindex="-1" aria-labelledby="familiaRegistradaLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content">
+                        <form action="{{route('acoes.acoes.familiaComRegistroAdd')}}" method="post">
+                          @csrf
+                          <!--Valor da Ação nesse caso sempre será o mesmo-->
+                          <input type="hidden" name="acao" value="{{$acao_local->id}}"> 
+                          
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="familiaRegistradaLabel">Selecione para inserir a Familia</h5>
+                          </div>
+                          <div class="modal-body">
+                            <ul class="to_do">
+
+                              @foreach ($listarFamilias as $listar)
+                                <li>
+                                  <label for="{{$listar->id}}">
+                                    <p><input type="checkbox" class="flat" name="familias[]" id="{{$listar->id}}" value="{{$listar->id}}"> {{$listar->nome}} </p>
+                                    <p><strong>CPF:</strong> {{$listar->cpf}} | <strong>RG:</strong> {{$listar->rg}} </p>
+                                  </label>
+                                </li>
+                              @endforeach
+                            
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ./ Janela Modal Familias Registradas-->
+
+                  <!-- Modal Familias Não Registradas -->
+                  <div class="modal fade" id="familiaNaoRegistrada" tabindex="-1" aria-labelledby="familiaNaoRegistradaLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                      <div class="modal-content">
+                        <form action="{{route('acoes.acoes.familiaSemRegistroAdd')}}" method="post">
+                          @csrf
+                          <input type="hidden" name="acao" value="{{$acao_local->id}}">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="familiaNaoRegistradaLabel">Dados do representante da familia </h5>
+                          </div>
+                          <div class="modal-body">
+                            <div class="mb-3 row">
+                              <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome Completo" required>
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label for="cpf" class="col-sm-2 col-form-label">CPF</label>
+                              <div class="col-sm-10">
+                                <input type="number" class="form-control" id="cpf" name="cpf" placeholder="Sómente números">
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label for="rg" class="col-sm-2 col-form-label">RG</label>
+                              <div class="col-sm-10">
+                                <input type="number" class="form-control" id="rg" name="rg" placeholder="Sómente números">
+                              </div>
+                            </div>
+                            <div class="mb-3 row">
+                              <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
+                              <div class="col-sm-10">
+                                <input type="number" class="form-control" id="telefone" name="telefone" placeholder="Sómente números com o DDD">
+                              </div>
+                            </div>
+                            
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ./ Janela Modal Familias Não Registradas-->
               </div>
             </div>
           </div>

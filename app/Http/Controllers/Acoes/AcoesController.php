@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Acoes;
 
 use App\Http\Controllers\Controller;
+use App\Models\AcaoFamiliaCadastrada;
+use App\Models\AcaoFamiliaNaoCadastrada;
 use App\Models\Acoes;
 use App\Models\AcoesLocal;
 use App\Models\Comunidade;
 use App\Models\ComunidadeResponsavel;
 use App\Models\ComunidadeTelResponsavel;
+use App\Models\Familia;
 use Illuminate\Http\Request;
 
 class AcoesController extends Controller
@@ -76,6 +79,44 @@ class AcoesController extends Controller
         return redirect()->route('acoes.acoes.acaoView',['acao'=>$acaoLocal->id]);
     }
 
+    public function familiaComRegistroAdd(Request $request)
+    {
+        $contador = count($request->familias);
+        
+        for ($i=0; $i < $contador; $i++) { 
+            $familiaCadastrada = new AcaoFamiliaCadastrada();
+            $familiaCadastrada->familia = $request->familias[$i]; 
+            $familiaCadastrada->acao = $request->acao; 
+            $familiaCadastrada->presenca = "Faltou";  
+            $familiaCadastrada->save();
+        }
+         
+
+        return redirect()->route('acoes.acoes.acaoView',['acao'=>$request->acao]);
+    }
+
+    public function familiaSemRegistroAdd(Request $request)
+    {
+        $familiaNaoCadastrada = new AcaoFamiliaNaoCadastrada();
+        $familiaNaoCadastrada->nome = $request->nome; 
+        $familiaNaoCadastrada->cpf = $request->cpf; 
+        $familiaNaoCadastrada->rg = $request->rg; 
+        $familiaNaoCadastrada->telefone = $request->telefone; 
+        $familiaNaoCadastrada->acao = $request->acao; 
+        $familiaNaoCadastrada->save(); 
+
+        return redirect()->route('acoes.acoes.acaoView',['acao'=>$request->acao]);
+    }
+
+    public function presenciou(AcaoFamiliaCadastrada $acaoFamCad, Request $request)
+    {
+
+        $acaoFamCad->presenca = $request->presenciou;
+        $acaoFamCad->save();
+
+        return redirect()->route('acoes.acoes.acaoView',['acao'=>$acaoFamCad->acao]);
+    }
+
     public function acaoView(Acoes $acao)
     {
         $user = Auth()->user() ; //Pega os dados do Usuario logado
@@ -86,6 +127,11 @@ class AcoesController extends Controller
         $responsaveis = ComunidadeResponsavel::where('comunidade', $acao->comunidade)->get();
         $responsaveisTel = ComunidadeTelResponsavel::where('comunidade', $acao->comunidade)->get();
 
-        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade', 'acao_local', 'responsaveis', 'responsaveisTel'));
+        $listarFamilias = Familia::where('comunidade', $acao->comunidade)->get()->sortBy('nome');
+
+        $familiaNaoCadastrada = AcaoFamiliaNaoCadastrada::where('acao', $acao->id)->get();
+        $familiaCadastrada = AcaoFamiliaCadastrada::where('acao', $acao->id)->get();
+
+        return view('sistema.acoes.acoes.acao', compact('user', 'acao', 'comunidade', 'acao_local', 'responsaveis', 'responsaveisTel', 'listarFamilias','familiaCadastrada','familiaNaoCadastrada'));
     }
 }

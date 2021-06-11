@@ -30,4 +30,14 @@ class Acoes extends Model
     {
         return $this->hasMany(AcoesLocal::class, 'acao', 'id');
     }
+
+    public function acao_familias_cadastradas()
+    {
+        return $this->hasMany(AcaoFamiliaCadastrada::class, 'acao', 'id');
+    }
+
+    public function acao_familias_nao_cadastradas()
+    {
+        return $this->hasMany(AcaoFamiliaNaoCadastrada::class, 'acao', 'id');
+    }
 }

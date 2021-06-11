@@ -40,4 +40,9 @@ class Familia extends Model
     {
         return $this->hasMany(AcoesFamilia::class, 'familia', 'id');
     }
+
+    public function acao_familias_cadastradas()
+    {
+        return $this->hasMany(AcaoFamiliaCadastrada::class, 'familia', 'id');
+    }
 }
