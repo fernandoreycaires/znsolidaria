@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Acoes;
 
 use App\Http\Controllers\Controller;
+use App\Models\AcaoFamiliaCadastrada;
+use App\Models\Acoes;
 use App\Models\Comunidade;
 use App\Models\Familia;
 use App\Models\FamiliaEmail;
@@ -130,6 +132,9 @@ class FamiliaController extends Controller
 
         $comunidades = Comunidade::all();
 
-        return view('sistema.acoes.familia.perfil', compact('user', 'perfil', 'endereco', 'telefone', 'email','observacao','comunidades'));
+        $acoes = Acoes::all()->sortByDesc('dia');
+        $acoesRegistrada = AcaoFamiliaCadastrada::where('familia', $perfil->id)->get();
+
+        return view('sistema.acoes.familia.perfil', compact('user', 'perfil', 'endereco', 'telefone', 'email','observacao','comunidades', 'acoes', 'acoesRegistrada'));
     }
 }

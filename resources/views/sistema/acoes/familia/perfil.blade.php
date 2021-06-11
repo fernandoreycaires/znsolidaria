@@ -7,7 +7,7 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Perfil </h3>
+        <h3><a href="{{route('acoes.familia.index')}}"><i class="fa fa-chevron-left"></i></a> Perfil </h3>
       </div>
     </div>
     
@@ -207,70 +207,39 @@
                     <h3>Ações</h3>
                     <!-- start recent activity -->
                     <ul class="messages">
-                      <li>
-                        <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-info">24</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Desmond Davison</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-error">21</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Brian Michaels</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                            <a href="#" data-original-title="">Download</a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-info">24</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Desmond Davison</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                            <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                          </p>
-                        </div>
-                      </li>
-                      <li>
-                        <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
-                        <div class="message_date">
-                          <h3 class="date text-error">21</h3>
-                          <p class="month">May</p>
-                        </div>
-                        <div class="message_wrapper">
-                          <h4 class="heading">Brian Michaels</h4>
-                          <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                          <br />
-                          <p class="url">
-                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                            <a href="#" data-original-title="">Download</a>
-                          </p>
-                        </div>
-                      </li>
+                      
+                      @foreach ($acoes as $acao)
+                        @foreach ($acoesRegistrada as $ar)
+                          @if ($ar->acao == $acao->id)
+                            <?php $data = strtotime($acao->dia); 
+                                  $dia = date('d',$data);
+                                  $mes = date('M',$data);
+                                  $ano = date('Y',$data);
+                            ?>
+                            <li>
+                              <img src="{{asset('image/fotos/painel1.jpg')}}" class="avatar" alt="Avatar">
+                              <div class="message_date">
+                                <h3 class="date text-info">{{ $dia }}</h3>
+                                <p class="month">{{$mes}} / {{$ano}} </p>
+                              </div>
+                              <div class="message_wrapper">
+                                @foreach ($comunidades as $comunidade)
+                                  @if ($comunidade->id == $acao->comunidade)
+                                    <h4 class="heading">{{$comunidade->comunidade}} </h4>
+                                  @endif
+                                @endforeach
+
+                                <blockquote class="message">{{$acao->descricao}} </blockquote>
+                                <br>
+                                <p class="url">
+                                  <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                  <a href="{{route('acoes.acoes.acaoView',['acao'=>$acao->id])}} "><i class="fa fa-eye"></i> Visualizar Ação</a>
+                                </p>
+                              </div>
+                            </li>
+                          @endif
+                        @endforeach
+                      @endforeach
 
                     </ul>
                     <!-- end recent activity -->
